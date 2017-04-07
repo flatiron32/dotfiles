@@ -24,3 +24,16 @@ symlink_dirs ~/.dotfiles/link ~
 #symlink_dirs ~/Dropbox/scripts/private_dotfiles/grubhub ~/.dotfiles/private/work
 
 git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+git config --global color.branch auto
+git config --global color.diff auto
+git config --global color.status auto
+git config --global color.branch.current 'yellow reverse'
+git config --global color.branch.local 'yellow'
+git config --global color.branch.remote 'green'
+git config --global color.diff.meta 'yellow bold'
+git config --global color.diff.frag 'magenta bold'
+git config --global color.diff.old 'red bold'
+git config --global color.diff.new 'green bold'
+git config --global color.status.added 'yellow'
+git config --global color.status.changed 'green'
+git config --global color.status.untracked 'cyan'
