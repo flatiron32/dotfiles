@@ -210,8 +210,8 @@ defaults write com.apple.screencapture type -string "png"
 defaults write com.apple.terminal StringEncodings -array 4
 
 # Set profiles
-defaults write com.apple.Terminal "Default Window Settings" -data "Homebrew"
-defaults write com.apple.Terminal "Startup Window Settings" -data "Homebrew"
+defaults write com.apple.Terminal "Default Window Settings" "Homebrew"
+defaults write com.apple.Terminal "Startup Window Settings" "Homebrew"
 
 
 ####################
