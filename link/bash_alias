@@ -27,12 +27,12 @@ alias gbc="git status | awk '{print \$3}' | head -n 1 | pbcopy"
 alias gboth='git checkout master && git pull origin master && git checkout develop && git pull origin develop'
 
 function local_git_check() {
-  for repo in $(locate .git | grep git$ | sed 's/\/.git//g')
+  for repo in $(locate .git | grep git$ | grep -v "Homebrew" | sed 's/\/.git//g')
   do 
     cd $repo
     git pull --all
     res=$(gsd)
-    if [[ $res != *up-to-date* ]] || [[ $res == *"Untracked files"* ]]
+    if [[ $res != *up-to-date* ]] || [[ $res == *"Untracked files"* ]] || [[ $res == *"Changes not staged"*  ]]
     then 
       gsd
       break
