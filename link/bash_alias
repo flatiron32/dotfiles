@@ -30,9 +30,9 @@ function local_git_check() {
   for repo in $(locate .git | grep git$ | sed 's/\/.git//g')
   do 
     cd $repo
-    git fetch --all
+    git pull --all
     res=$(gsd)
-    if [[ $res != *up-to-date* ]]
+    if [[ $res != *up-to-date* ]] || [[ $res == *"Untracked files"* ]]
     then 
       gsd
       break
