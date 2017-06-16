@@ -26,4 +26,17 @@ alias gsd='echo; git branch; echo; git status; echo; git log -1; echo; echo "CUR
 alias gbc="git status | awk '{print \$3}' | head -n 1 | pbcopy"
 alias gboth='git checkout master && git pull origin master && git checkout develop && git pull origin develop'
 
+function local_git_check() {
+  for repo in $(locate .git | grep git$ | sed 's/\/.git//g')
+  do 
+    cd $repo
+    git fetch --all
+    res=$(gsd)
+    if [[ $res != *up-to-date* ]]
+    then 
+      gsd
+      break
+    fi
+  done
+}
 #### APP ALIASES ####
