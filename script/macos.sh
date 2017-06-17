@@ -239,6 +239,8 @@ defaults write com.apple.systemuiserver menuExtras -array-add "/System/Library/C
 # Show volume in menu bar
 defaults write com.apple.systemuiserver menuExtras -array-add "/System/Library/CoreServices/Menu Extras/Volume.menu"
 
+# Start the locate database indexing
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
 
 ####################
 # CLEANUP
