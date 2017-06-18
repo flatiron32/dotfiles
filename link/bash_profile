@@ -10,8 +10,4 @@ if [ -n "$BASH_VERSION" ]; then
     . "$HOME/.bashrc"
     fi
 fi
-[[ -s "/Users/jacob.tomaw/.gvm/scripts/gvm" ]] && source "/Users/jacob.tomaw/.gvm/scripts/gvm"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/jacob.tomaw/.sdkman"
-[[ -s "/Users/jacob.tomaw/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jacob.tomaw/.sdkman/bin/sdkman-init.sh"
