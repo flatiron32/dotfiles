@@ -246,4 +246,7 @@ sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
 # CLEANUP
 ####################
 
+# Bounce the System UI
+killall SystemUIServer
+
 echo "#### MAC SETTINGS COMPLETE #####"
