@@ -135,6 +135,9 @@ launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/nul
 # Key Repeat to fastest in macOS 10.12 (Sierra)
 defaults write NSGlobalDomain KeyRepeat -int 2
 
+# set the function keys to be function keys
+defaults write -g com.apple.keyboard.fnState -bool true
+
 ####################
 # TRACKPAD
 ####################
