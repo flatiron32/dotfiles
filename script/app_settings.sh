@@ -41,3 +41,14 @@ cat > ~/.config/karabiner/karabiner.json << EOF
 }
 EOF
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Karabiner-Elements", hidden:false}'
+
+###################
+# jenv
+###################
+
+jenv init
+jenv add /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/
+jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/
+jenv global 1.8
+jenv enable-plugin maven
+
