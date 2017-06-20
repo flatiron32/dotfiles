@@ -54,6 +54,8 @@ defaults write com.apple.dock launchanim -bool false
 # No bouncing
 defaults write com.apple.dock no-bouncing -bool true
 
+# Show only active applications
+defaults write com.apple.dock static-only -bool TRUE
 
 ####################
 # FINDER
@@ -251,5 +253,8 @@ sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
 
 # Bounce the System UI
 killall SystemUIServer
+
+# Bounce the Dock
+killall Dock
 
 echo "#### MAC SETTINGS COMPLETE #####"
