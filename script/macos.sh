@@ -57,6 +57,9 @@ defaults write com.apple.dock no-bouncing -bool true
 # Show only active applications
 defaults write com.apple.dock static-only -bool TRUE
 
+# Show hidden apps in dock
+defaults write com.apple.dock showhidden -bool TRUE
+
 ####################
 # FINDER
 ####################
