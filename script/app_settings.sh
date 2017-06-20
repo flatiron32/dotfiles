@@ -52,3 +52,9 @@ jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/
 jenv global 1.8
 jenv enable-plugin maven
 
+##################
+# Chrome
+##################
+
+# Set chrome as default browser
+open -a "Google Chrome" --args --make-default-browser
