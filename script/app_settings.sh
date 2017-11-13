@@ -58,3 +58,6 @@ jenv enable-plugin maven
 
 # Set chrome as default browser
 open -a "Google Chrome" --args --make-default-browser
+
+# Setup Screen res
+screenresolution set 2048x1280x32@0
