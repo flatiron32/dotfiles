@@ -13,3 +13,5 @@ fi
 
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+
+eval $(thefuck --alias)

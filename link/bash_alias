@@ -40,3 +40,4 @@ function local_git_check() {
   done
 }
 #### APP ALIASES ####
+alias f='fuck'
