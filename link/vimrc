@@ -23,3 +23,8 @@ set showmatch
 " Set tabs to be 2 spaces
 set tabstop=2
 set expandtab
+
+" Need for Vimwiki (and possibly others)
+set nocompatible
+filetype plugin on
+syntax on
