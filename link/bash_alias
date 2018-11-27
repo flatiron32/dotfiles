@@ -41,3 +41,9 @@ function local_git_check() {
 }
 #### APP ALIASES ####
 alias f='fuck'
+
+function ssh_partner_sftp() {
+  PARTNER_CODE=$1
+  SFTP_SERVER=$(host sftp.$PARTNER_CODE.shoprunner.net | tail -n1 | cut -d. -f1)
+  ssh $SFTP_SERVER
+}
