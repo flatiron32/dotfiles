@@ -39,3 +39,5 @@ filetype plugin indent on    " required
 
 " Need for Vimwiki (and possibly others)
 syntax on
+
+set backspace=2
