@@ -42,3 +42,24 @@ filetype plugin indent on    " required
 syntax on
 
 set backspace=2
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': [
+\       'remove_trailing_lines',
+\       'isort',
+\       'black',
+\   ],
+\   'javascript': ['eslint'],
+\}
+
+
+" Set this veriable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
