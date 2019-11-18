@@ -72,6 +72,7 @@ DISABLE_UPDATE_PROMPT="true"
 plugins=(
   alias-finder
   aws
+  brew
   git
   history-substring-search
 )
