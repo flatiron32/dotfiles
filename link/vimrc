@@ -63,3 +63,9 @@ let g:ale_fixers = {
 
 " Set this veriable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
+
+" Configure powerline
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+set ls=2
