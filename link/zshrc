@@ -73,6 +73,7 @@ plugins=(
   alias-finder
   aws
   brew
+  colored-man-pages
   git
   history-substring-search
 )
