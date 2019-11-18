@@ -74,12 +74,16 @@ plugins=(
   aws
   brew
   colored-man-pages
+  colorize
   git
   history-substring-search
 )
 
 # Enable executing alias-finder before each command
 ZSH_ALIAS_FINDER_AUTOMATIC=true
+
+# Set colorise pygment style
+ZSH_COLORIZE_STYLE="friendly"
 
 source $ZSH/oh-my-zsh.sh
 
