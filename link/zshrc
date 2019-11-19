@@ -75,6 +75,7 @@ plugins=(
   brew
   colored-man-pages
   colorize
+  command-not-found
   git
   history-substring-search
 )
