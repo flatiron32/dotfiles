@@ -79,6 +79,7 @@ plugins=(
   docker-compose
   docker
   git
+  gitignore
   history-substring-search
 )
 
