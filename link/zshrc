@@ -76,6 +76,7 @@ plugins=(
   colored-man-pages
   colorize
   command-not-found
+  docker-compose
   git
   history-substring-search
 )
