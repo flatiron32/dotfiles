@@ -1,4 +1,4 @@
-alias resource='source ~/.zshrc'
+alias resource='exec zsh'
 
 ##### GIT ALIASES #####
 alias gs='git status'
