@@ -81,6 +81,7 @@ plugins=(
   git
   gitignore
   history-substring-search
+  zsh-autosuggestions
 )
 
 # Enable executing alias-finder before each command
