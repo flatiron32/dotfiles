@@ -89,6 +89,7 @@ plugins=(
   gitignore
   history-substring-search
   httpie
+  tmux
   zsh-autosuggestions
 )
 
