@@ -1,3 +1,4 @@
 .dotfiles.iml
 backup
 *.swp
+lib/
