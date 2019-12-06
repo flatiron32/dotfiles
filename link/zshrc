@@ -160,3 +160,38 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+_echo () {
+  command printf %s\\n "$*" 2> /dev/null
+}
+
+_find_dir_up () {
+  local path_
+  path_="${PWD}"
+  while [ "${path_}" != "" ] && [ ! -d "${path_}/${1-}" ]; do
+    path_=${path_%/*}
+  done
+  _echo "${path_}"
+}
+
+_find_venv () {
+  local dir
+  dir="$(_find_dir_up '.venv')"
+  if [ -e "${dir}/.venv" ]; then
+    nvm_echo "${dir}/.venv"
+  fi
+}
+
+
+load-python() {
+  local venv_path="$(_find_venv)"
+
+  if [ -n "$venv_path" ]; then
+    source $venv_path/bin/activate
+  elif type "deactivate" > /dev/null; then
+    echo "Reverting to system python"
+    deactivate
+  fi
+}
+add-zsh-hook chpwd load-python
+load-python
