@@ -34,6 +34,7 @@ call vundle#begin()
 
 Plugin 'udalov/kotlin-vim'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'vimwiki/vimwiki'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -49,6 +50,8 @@ packloadall
 " Load all of the helptags now, after plugins have been loaded.
 " All messages and errors will be ignored.
 silent! helptags ALL
+
+
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -69,3 +72,33 @@ python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
 set ls=2
+
+autocmd FileType markdown setlocal spell
+
+set undofile " Maintain undo history between sessions
+set undodir=~/.vim/undodir
+
+" Keybindings for wiki
+nnoremap <F5> o<ESC>"=strftime("%T ")<CR>PA
+inoremap <F5> <C-O>$<CR><C-O>0<C-R>=strftime("%T ")<CR>
+nmap <F4> <F5>[]<Space>
+imap <F4> <F5>[]<Space>
+nmap <F6> <F5>*<Space>
+imap <F6> <F5>*<Space>
+nmap <F7> <F5>**<Space>
+imap <F7> <F5>**<Space>
+nmap <F8> <F5>***<Space>
+imap <F8> <F5>***<Space>
+" Common Tasks
+nmap bio  <F5>Bio
+imap bio  <F5>Bio
+nmap cho! <F5>Chores
+imap cho! <F5>Chores
+nmap pem! <F5>Personal Email
+imap pem! <F5>Personal Email
+nmap emw! <F5>Work Email
+imap emw! <F5>Work Email
+nmap gh!  <F5>GitHub<F6>
+imap gh!  <F5>GitHub<F6>
+nmap pd!  <F5>PagerDuty:<F6>
+imap pd!  <F5>PagerDuty:<F6>
