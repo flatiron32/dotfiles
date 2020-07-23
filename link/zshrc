@@ -195,3 +195,48 @@ load-python() {
 }
 add-zsh-hook chpwd load-python
 load-python
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+export PATH="/usr/local/sbin:$PATH"
+
+random_number () {
+  if [[ -z "$1" ]]; then
+    up_to="10"
+  else
+    up_to=$1
+  fi
+  echo $((1 + RANDOM % $up_to))
+}
+
+timer() {
+  if [[ -z "$1" ]]; then
+    echo "Need a stop time in minutes."
+    exit
+  else
+    stop_in=$(( $1 * 60 ))
+  fi
+
+  start=$(date +%s)
+  stop_time=$(( $start + $stop_in ))
+  cnt=0
+  while [ $stop_time -ge $(date +%s) ]; do
+    cnt=$(($cnt + 1))
+    mode=$(( ($cnt / 4 ) % 4 ))
+    if [[ $mode -eq 0 ]]; then
+      turner="|"
+    elif [[ $mode -eq 1 ]]; then
+      turner="/"
+    elif [[ $mode -eq 2 ]]; then
+      turner="-"
+    else
+      turner="\\"
+    fi
+
+    seconds_left=$(( $stop_time - $(date +%s) ))
+    min=$(( $seconds_left / 60 ))
+    secs=$(( $seconds_left % 60 ))
+    printf ' %s %02d:%02d   \r' $turner $min $secs
+  done
+
+  say Stop Stop Stop
+}
