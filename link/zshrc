@@ -137,7 +137,7 @@ export NVM_DIR="$HOME/.nvm"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(direnv hook zsh)"
-source ~/.dotfiles/lib/zsh-autoenv/autoenv.zsh
+#source ~/.dotfiles/lib/zsh-autoenv/autoenv.zsh
 
 # Setup envs
 autoload -U add-zsh-hook
