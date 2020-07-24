@@ -41,6 +41,7 @@ filetype plugin indent on    " required
 
 " Need for Vimwiki (and possibly others)
 syntax on
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/Dropbox/vimwiki_html/'}]
 
 set backspace=2
 
