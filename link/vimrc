@@ -1,6 +1,9 @@
 "turn on line numbers
 set number
 
+"enable mouse
+set mouse=a
+
 " *Search Options*
 " Ignore case when searching unless mixed case is used in search.
 set ignorecase
@@ -35,6 +38,10 @@ call vundle#begin()
 Plugin 'udalov/kotlin-vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'vimwiki/vimwiki'
+Plugin 'tpope/vim-obsession'
+Plugin 'dense-analysis/ale'
+Plugin 'tmux-plugins/vim-tmux'
+Plugin 'hashivim/vim-terraform'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -52,7 +59,10 @@ packloadall
 " All messages and errors will be ignored.
 silent! helptags ALL
 
+let g:terraform_fmt_on_save=1
 
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -62,6 +72,7 @@ let g:ale_fixers = {
 \       'black',
 \   ],
 \   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
 \}
 
 
@@ -75,6 +86,7 @@ python3 del powerline_setup
 set ls=2
 
 autocmd FileType markdown setlocal spell
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab
 
 set undofile " Maintain undo history between sessions
 set undodir=~/.vim/undodir
@@ -95,6 +107,8 @@ nmap bio  <F5>Bio
 imap bio  <F5>Bio
 nmap cho! <F5>Chores
 imap cho! <F5>Chores
+nmap dog! <F5>DataDog<F6>
+imap dog! <F5>DataDog<F6>
 nmap pem! <F5>Personal Email
 imap pem! <F5>Personal Email
 nmap emw! <F5>Work Email
@@ -103,3 +117,18 @@ nmap gh!  <F5>GitHub<F6>
 imap gh!  <F5>GitHub<F6>
 nmap pd!  <F5>PagerDuty:<F6>
 imap pd!  <F5>PagerDuty:<F6>
+
+command! -nargs=* Blame call s:GitBlame()
+
+function! s:GitBlame()
+    let cmd = "git blame -w " . bufname("%")
+    let nline = line(".") + 1
+    botright new
+    execute "$read !" . cmd
+    execute "normal " . nline . "gg"
+    execute "set filetype=perl"
+endfunction
+
+" move vertically by visual line with j and k
+nnoremap j gj
+nnoremap k gk

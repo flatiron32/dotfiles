@@ -216,10 +216,16 @@ timer() {
     stop_in=$(( $1 * 60 ))
   fi
 
+  if [[ -z "$2" ]]; then
+    thingToSay="Stop Stop Stop"
+  else
+    thingToSay="$2"
+  fi
+
   start=$(date +%s)
   stop_time=$(( $start + $stop_in ))
   cnt=0
-  while [ $stop_time -ge $(date +%s) ]; do
+  while [ $(bc <<< "$stop_time >= $(date +%s)") -eq 1 ]; do
     cnt=$(($cnt + 1))
     mode=$(( ($cnt / 4 ) % 4 ))
     if [[ $mode -eq 0 ]]; then
@@ -238,5 +244,5 @@ timer() {
     printf ' %s %02d:%02d   \r' $turner $min $secs
   done
 
-  say Stop Stop Stop
+  say $thingToSay
 }
