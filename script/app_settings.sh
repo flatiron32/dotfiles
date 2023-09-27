@@ -22,3 +22,9 @@ echo "#### APP SETTINGS BEGINNING #####"
 ####################
 
 vim +PluginInstall +qall
+
+####################
+# Oh-my-zsh
+####################
+
+p10k configure
