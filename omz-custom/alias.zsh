@@ -26,6 +26,3 @@ function remaster() {
   git checkout ${BRANCH}
   git rebase $1 master
 }
-
-#### APP ALIASES ####
-alias f='fuck'
