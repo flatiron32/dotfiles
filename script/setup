@@ -46,3 +46,6 @@ fi
 #if [ -f ~/.dotfiles/script/app_settings.sh ]; then
 #    source ~/.dotfiles/script/app_settings.sh
 #fi
+
+# Repo Clones
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
