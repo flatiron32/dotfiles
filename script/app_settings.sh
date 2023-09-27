@@ -18,46 +18,7 @@ echo "#### APP SETTINGS BEGINNING #####"
 
 
 ####################
-# Karabiner-Elements
+# vim
 ####################
 
-mkdir -p ~/.config/karabiner
-cat > ~/.config/karabiner/karabiner.json << EOF
-{
-    "global": {
-        "check_for_updates_on_startup": true,
-        "show_in_menu_bar": true,
-        "show_profile_name_in_menu_bar": false
-    },
-    "profiles": [
-        {
-            "name": "Default profile",
-            "selected": true,
-            "simple_modifications": {
-                "caps_lock": "left_control"
-            }
-        }
-    ]
-}
-EOF
-osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Karabiner-Elements", hidden:false}'
-
-###################
-# jenv
-###################
-
-jenv init
-jenv add /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/
-jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/
-jenv global 1.8
-jenv enable-plugin maven
-
-##################
-# Chrome
-##################
-
-# Set chrome as default browser
-open -a "Google Chrome" --args --make-default-browser
-
-# Setup Screen res
-screenresolution set 2048x1280x32@0
+vim +PluginInstall +qall

@@ -37,15 +37,15 @@ git config --global color.status.added 'yellow'
 git config --global color.status.changed 'green'
 git config --global color.status.untracked 'cyan'
 
+# Repo Clones
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 # Mac settings
 if [ -f ~/.dotfiles/script/macos.sh ]; then
     source ~/.dotfiles/script/macos.sh
 fi
 
 # App settings
-#if [ -f ~/.dotfiles/script/app_settings.sh ]; then
-#    source ~/.dotfiles/script/app_settings.sh
-#fi
-
-# Repo Clones
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [ -f ~/.dotfiles/script/app_settings.sh ]; then
+    source ~/.dotfiles/script/app_settings.sh
+fi
