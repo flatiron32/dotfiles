@@ -253,3 +253,7 @@ timer() {
 
   say $thingToSay
 }
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+fpath+=/opt/homebrew/share/zsh/site-functions
+autoload -Uz compinit && compinit
