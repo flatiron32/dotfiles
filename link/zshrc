@@ -73,6 +73,9 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Use Rancher docker
+export PATH=$PATH:/Users/xjxt218/.rd/bin
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -87,6 +90,7 @@ plugins=(
   command-not-found
   docker-compose
   docker
+  fzf
   git
   gitignore
   history-substring-search
@@ -254,6 +258,52 @@ timer() {
   say $thingToSay
 }
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
 fpath+=/opt/homebrew/share/zsh/site-functions
 autoload -Uz compinit && compinit
+
+# Setup History
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+HIST_STAMPS="yyyy-mm-dd"
+HISTORY_IGNORE="(ls|cd|pwd|exit)*"
+
+setopt EXTENDED_HISTORY      # Write the history file in the ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY    # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY         # Share history between all sessions.
+setopt HIST_IGNORE_DUPS      # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS  # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_IGNORE_SPACE     # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS     # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY           # Do not execute immediately upon history expansion.
+setopt APPEND_HISTORY        # append to history file (Default)
+setopt HIST_NO_STORE         # Don't store history commands
+setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
+
+export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+source ~/.plugins/gdevtool/gdevtool-plugin-init.sh
+export REQUESTS_CA_BUNDLE=/Users/xjxt218/.zscaler/certs.pem
+export SSL_CERT_FILE=/Users/xjxt218/.zscaler/certs.pem
+export NODE_EXTRA_CA_CERTS=/Users/xjxt218/.zscaler/certs.pem
+export CURL_CA_BUNDLE=/Users/xjxt218/.zscaler/certs.pem
+export ca_certificate=/Users/xjxt218/.zscaler/certs.pem
+export AWS_CA_BUNDLE=/Users/xjxt218/.zscaler/certs.pem
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/vault vault
+
+export ARTIFACT_SYSTEM_REPOSITORY=maven-shared-virtual
+export ARTIFACT_SYSTEM_USERNAME=jacob.tomaw@grainger.com
+export ARTIFACT_SYSTEM_PASSWORD=setup jfrog
+
+PATH=$PATH:~/rd/bin
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/xjxt218/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+# Added by Windsurf
+export PATH="/Users/xjxt218/.codeium/windsurf/bin:$PATH"
