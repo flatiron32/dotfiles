@@ -90,7 +90,6 @@ plugins=(
   command-not-found
   docker-compose
   docker
-  fzf
   git
   gitignore
   history-substring-search
@@ -284,7 +283,6 @@ export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-source ~/.plugins/gdevtool/gdevtool-plugin-init.sh
 export REQUESTS_CA_BUNDLE=/Users/xjxt218/.zscaler/certs.pem
 export SSL_CERT_FILE=/Users/xjxt218/.zscaler/certs.pem
 export NODE_EXTRA_CA_CERTS=/Users/xjxt218/.zscaler/certs.pem
