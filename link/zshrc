@@ -305,3 +305,45 @@ export PATH="/Users/xjxt218/.rd/bin:$PATH"
 
 # Added by Windsurf
 export PATH="/Users/xjxt218/.codeium/windsurf/bin:$PATH"
+
+# Overwrite Brew
+BREWFILE_REPO=~/.homebrew-brewfile
+BREWFILE_PATH="$BREWFILE_REPO/Brewfile"
+BREW_BIN=/opt/homebrew/bin/brew  # Change if on Intel
+
+function brew() {
+  local action="$1"
+  shift
+
+  case "$action" in
+    install|uninstall)
+      $BREW_BIN "$action" "$@" || return $?
+
+      # Capture pre-change hash
+      local before_hash
+      before_hash=$(shasum "$BREWFILE_PATH" 2>/dev/null || echo "no-file")
+
+      # Update Brewfile
+      brew bundle dump --file="$BREWFILE_PATH" --force
+
+      # Capture after-change hash
+      local after_hash
+      after_hash=$(shasum "$BREWFILE_PATH" 2>/dev/null || echo "no-file")
+
+      if [[ "$before_hash" != "$after_hash" ]]; then
+        echo "Detected change in Brewfile, committing..."
+
+        cd "$BREWFILE_REPO" || return 1
+        git add "$BREWFILE_PATH"
+        git commit -m "Update Brewfile after brew $action $*"
+        git push
+        cd - >/dev/null || return 1
+      else
+        echo "No changes to commit."
+      fi
+      ;;
+    *)
+      $BREW_BIN "$action" "$@"
+      ;;
+  esac
+}
