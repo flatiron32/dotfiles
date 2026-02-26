@@ -276,7 +276,7 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 # Private config (personal and work)
 if [ -d ~/.dotfiles/private ]; then
     for _dotfiles_folder in ~/.dotfiles/private/*/; do
-        for _dotfiles_file in "$_dotfiles_folder"*; do
+        for _dotfiles_file in "$_dotfiles_folder"*(N); do
             [ -f "$_dotfiles_file" ] && source "$_dotfiles_file"
         done
     done
