@@ -11,12 +11,5 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-export REQUESTS_CA_BUNDLE=$HOME/.zscaler/certs.pem
-export SSL_CERT_FILE=$HOME/.zscaler/certs.pem
-export NODE_EXTRA_CA_CERTS=$HOME/.zscaler/certs.pem
-export CURL_CA_BUNDLE=$HOME/.zscaler/certs.pem
-export ca_certificate=$HOME/.zscaler/certs.pem
-export AWS_CA_BUNDLE=$HOME/.zscaler/certs.pem
-
 complete -C /opt/homebrew/bin/vault vault
 

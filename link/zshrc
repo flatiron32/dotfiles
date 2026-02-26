@@ -122,16 +122,7 @@ setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line 
 export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-
-export REQUESTS_CA_BUNDLE=$HOME/.zscaler/certs.pem
-export SSL_CERT_FILE=$HOME/.zscaler/certs.pem
-export NODE_EXTRA_CA_CERTS=$HOME/.zscaler/certs.pem
-export CURL_CA_BUNDLE=$HOME/.zscaler/certs.pem
-export ca_certificate=$HOME/.zscaler/certs.pem
-export AWS_CA_BUNDLE=$HOME/.zscaler/certs.pem
-
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/vault vault
 
 export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 
