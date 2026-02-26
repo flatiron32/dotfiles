@@ -20,7 +20,3 @@ export AWS_CA_BUNDLE=$HOME/.zscaler/certs.pem
 
 complete -C /opt/homebrew/bin/vault vault
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="$HOME/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-
