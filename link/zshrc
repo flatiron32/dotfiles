@@ -120,40 +120,95 @@ autoload -U +X bashcompinit && bashcompinit
 
 export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 
-# Overwrite Brew
-BREWFILE_REPO=~/.homebrew-brewfile
-BREWFILE_PATH="$BREWFILE_REPO/Brewfile"
+# Brew wrapper — surgically updates the right Brewfile on install/uninstall/tap/untap
+BREWFILE_PERSONAL=~/.homebrew-brewfile/Brewfile
+BREWFILE_WORK=~/.dotfiles/private/work/Brewfile.work
 BREW_BIN=/opt/homebrew/bin/brew  # Change if on Intel
+
+function _brewfile_target() {
+  # Routes new installs to work Brewfile when in work context
+  if [[ -n "$WORK_CONTEXT" && -f "$BREWFILE_WORK" ]]; then
+    echo "$BREWFILE_WORK"
+  else
+    echo "$BREWFILE_PERSONAL"
+  fi
+}
+
+function _brewfile_containing() {
+  # Returns the Brewfile that contains the given string
+  local search="$1"
+  if grep -qF "$search" "$BREWFILE_WORK" 2>/dev/null; then
+    echo "$BREWFILE_WORK"
+  elif grep -qF "$search" "$BREWFILE_PERSONAL" 2>/dev/null; then
+    echo "$BREWFILE_PERSONAL"
+  fi
+}
+
+function _brewfile_commit() {
+  local file="$1"
+  local msg="$2"
+  local repo_dir filename
+  repo_dir=$(dirname "$file")
+  filename=$(basename "$file")
+  cd "$repo_dir" || return 1
+  git add "$filename"
+  git diff --cached --quiet || git commit -m "brew: $msg"
+  git push
+  cd - >/dev/null || return 1
+}
 
 function brew() {
   local action="$1"
   shift
 
   case "$action" in
-    install|uninstall)
-      $BREW_BIN "$action" "$@" || return $?
-
-      # Capture pre-change hash
-      local before_hash
-      before_hash=$(shasum "$BREWFILE_PATH" 2>/dev/null || echo "no-file")
-
-      # Update Brewfile
-      brew bundle dump --file="$BREWFILE_PATH" --force
-
-      # Capture after-change hash
-      local after_hash
-      after_hash=$(shasum "$BREWFILE_PATH" 2>/dev/null || echo "no-file")
-
-      if [[ "$before_hash" != "$after_hash" ]]; then
-        echo "Detected change in Brewfile, committing..."
-
-        cd "$BREWFILE_REPO" || return 1
-        git add "$BREWFILE_PATH"
-        git commit -m "Update Brewfile after brew $action $*"
-        git push
-        cd - >/dev/null || return 1
-      else
-        echo "No changes to commit."
+    install)
+      $BREW_BIN install "$@" || return $?
+      local is_cask=false pkg
+      for arg in "$@"; do
+        [[ "$arg" == "--cask" ]] && is_cask=true
+        [[ "$arg" != -* ]] && pkg="$arg"
+      done
+      local target line
+      target=$(_brewfile_target)
+      [[ "$is_cask" == "true" ]] && line="cask \"$pkg\"" || line="brew \"$pkg\""
+      if ! grep -qF "$line" "$target"; then
+        echo "$line" >> "$target"
+        _brewfile_commit "$target" "install $pkg"
+      fi
+      ;;
+    uninstall)
+      $BREW_BIN uninstall "$@" || return $?
+      local pkg
+      for arg in "$@"; do
+        [[ "$arg" != -* ]] && pkg="$arg"
+      done
+      local target
+      target=$(_brewfile_containing "\"$pkg\"")
+      if [[ -n "$target" ]]; then
+        sed -i '' "/\"$pkg\"/d" "$target"
+        _brewfile_commit "$target" "uninstall $pkg"
+      fi
+      ;;
+    tap)
+      $BREW_BIN tap "$@" || return $?
+      local tap_name="$1" tap_url="$2"
+      local target line
+      target=$(_brewfile_target)
+      [[ -n "$tap_url" ]] && line="tap \"$tap_name\", \"$tap_url\"" || line="tap \"$tap_name\""
+      if ! grep -qF "tap \"$tap_name\"" "$target"; then
+        echo "$line" >> "$target"
+        _brewfile_commit "$target" "tap $tap_name"
+      fi
+      ;;
+    untap)
+      $BREW_BIN untap "$@" || return $?
+      local tap_name="$1"
+      local target
+      target=$(_brewfile_containing "\"$tap_name\"")
+      if [[ -n "$target" ]]; then
+        sed -i '' "/\"$tap_name\"/d" "$target"
+        _brewfile_commit "$target" "untap $tap_name"
       fi
       ;;
     *)
