@@ -41,12 +41,13 @@
 - Added `vim +PluginInstall +qall` to script/setup
 - Plan for full Brewfile split documented at `docs/brewfile-separation-plan.md`
 
-### Brewfile — next session
-- Need to split Brewfile into personal (public) and work (private submodule)
-- Key constraint: `brew bundle dump --force` dumps everything — need surgical wrapper instead
-- WORK_CONTEXT env var approach: brew wrapper checks if set (exported by private/work/grainger) to route installs to correct Brewfile
-- New Brewfile.work goes in private/work/ submodule
-- Machine bootstrap via Strap → runs script/setup, then brew bundle
+### Brewfile split — completed
+- Public Brewfile now personal-only (no Grainger tools, no private tap URLs)
+- `~/.dotfiles/private/work/Brewfile.work` holds all Grainger taps/brews/casks/vscode extensions
+- `private/work/grainger` exports `WORK_CONTEXT=grainger`
+- brew wrapper in zshrc is now surgical: appends/removes individual lines, routes to correct Brewfile based on WORK_CONTEXT
+- Handles install, uninstall, tap, untap
+- **Still TODO**: wire up `brew bundle --file=Brewfile.work` in Grainger bootstrap/setup script for new machine provisioning
 
 ### Things to watch
 - `bashrc` private-sourcing loop uses old `ls | grep` style — works but not as clean as zshrc version
