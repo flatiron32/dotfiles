@@ -24,6 +24,31 @@
 - Conventional commits: `type(scope): description`
 - Small focused commits, not batched
 
+### Second pass cleanup (same session)
+- Removed reattach-to-user-namespace (pre-2015 macOS clipboard workaround)
+- Removed tmux-copycat (deprecated, native tmux handles it)
+- Removed jenv from zshrc (SDKMAN handles Java at Grainger)
+- Removed dead bashrc: REPODIR, bash-git-prompt, yo tabtab, Intel LDFLAGS/CPPFLAGS
+- Removed dead aliases: repofresh, gboth, p4
+- Removed unused OMZ plugins: aws, colorize, gitignore, httpie
+- Replaced powerline (broken Python dep) with vim-airline
+
+### Brewfile cleanup
+- Removed `tap "grainger/gdev", "git@github.com:wwg-internal/homebrew-gdev.git"` from public Brewfile (was exposing private GitHub org URL)
+- Removed nvm, jenv, dropbox, temurin@8 from Brewfile
+- Moved `git config url.insteadOf` from script/setup to private/work/grainger
+- Made git clones in script/setup idempotent
+- Added `vim +PluginInstall +qall` to script/setup
+- Plan for full Brewfile split documented at `docs/brewfile-separation-plan.md`
+
+### Brewfile — next session
+- Need to split Brewfile into personal (public) and work (private submodule)
+- Key constraint: `brew bundle dump --force` dumps everything — need surgical wrapper instead
+- WORK_CONTEXT env var approach: brew wrapper checks if set (exported by private/work/grainger) to route installs to correct Brewfile
+- New Brewfile.work goes in private/work/ submodule
+- Machine bootstrap via Strap → runs script/setup, then brew bundle
+
 ### Things to watch
 - `bashrc` private-sourcing loop uses old `ls | grep` style — works but not as clean as zshrc version
 - `bash_profile` and `bashrc` are lightly maintained; Jacob uses zsh exclusively
+- SSH config (`~/.ssh/config` with `github-personal` alias) is NOT in dotfiles — must be set up manually on new machine before private submodule will clone
