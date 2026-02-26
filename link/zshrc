@@ -289,16 +289,6 @@ export AWS_CA_BUNDLE=/Users/xjxt218/.zscaler/certs.pem
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/vault vault
 
-export ARTIFACT_SYSTEM_REPOSITORY=maven-shared-virtual
-export ARTIFACT_SYSTEM_USERNAME=jacob.tomaw@grainger.com
-export ARTIFACT_SYSTEM_PASSWORD=setup jfrog
-
-PATH=$PATH:~/rd/bin
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/xjxt218/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-
 export PATH="/Users/xjxt218/.codeium/windsurf/bin:$PATH"
 
 # Overwrite Brew
