@@ -47,7 +47,7 @@
 - `private/work/grainger` exports `WORK_CONTEXT=grainger`
 - brew wrapper in zshrc is now surgical: appends/removes individual lines, routes to correct Brewfile based on WORK_CONTEXT
 - Handles install, uninstall, tap, untap
-- **Still TODO**: wire up `brew bundle --file=Brewfile.work` in Grainger bootstrap/setup script for new machine provisioning
+- `private/work/setup` script created — runs `brew bundle --file=Brewfile.work` for new Grainger machine provisioning
 
 ### Things to watch
 - `bashrc` private-sourcing loop uses old `ls | grep` style — works but not as clean as zshrc version
