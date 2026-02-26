@@ -100,6 +100,8 @@ ZSH_ALIAS_FINDER_AUTOMATIC=true
 # Set colorise pygment style
 ZSH_COLORIZE_STYLE="friendly"
 
+fpath+=/opt/homebrew/share/zsh/site-functions
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -191,9 +193,6 @@ timer() {
 
   say $thingToSay
 }
-
-fpath+=/opt/homebrew/share/zsh/site-functions
-autoload -Uz compinit && compinit
 
 # Setup History
 HISTFILE="$HOME/.zsh_history"
