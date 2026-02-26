@@ -21,7 +21,6 @@ git -C ~/.dotfiles submodule update --init --recursive
 
 symlink_dirs ~/.dotfiles/link ~
 
-git config --global url.ssh://git@github.com/.insteadOf https://github.com/
 git config --global color.branch auto
 git config --global color.diff auto
 git config --global color.status auto
@@ -36,11 +35,13 @@ git config --global color.status.added 'yellow'
 git config --global color.status.changed 'green'
 git config --global color.status.untracked 'cyan'
 
-# Repo Clones
-git clone           https://github.com/VundleVim/Vundle.vim.git      ~/.vim/bundle/Vundle.vim
-git clone           https://github.com/ohmyzsh/ohmyzsh.git           ~/.oh-my-zsh
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git     $HOME/.oh-my-zsh/custom/themes/powerlevel10k
-git clone           https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+# Repo Clones (idempotent)
+[ -d ~/.vim/bundle/Vundle.vim ]                                    || git clone           https://github.com/VundleVim/Vundle.vim.git      ~/.vim/bundle/Vundle.vim
+[ -d ~/.oh-my-zsh ]                                                || git clone           https://github.com/ohmyzsh/ohmyzsh.git           ~/.oh-my-zsh
+[ -d $HOME/.oh-my-zsh/custom/themes/powerlevel10k ]               || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git     $HOME/.oh-my-zsh/custom/themes/powerlevel10k
+[ -d $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]        || git clone           https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+vim +PluginInstall +qall
 
 # Mac settings
 if [ -f ~/.dotfiles/script/macos.sh ]; then
