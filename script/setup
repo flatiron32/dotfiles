@@ -20,8 +20,6 @@ chmod 700 ~/.dotfiles/private
 git -C ~/.dotfiles submodule update --init --recursive
 
 symlink_dirs ~/.dotfiles/link ~
-#symlink_dirs ~/Dropbox/scripts/private_dotfiles/personal ~/.dotfiles/private/personal
-#symlink_dirs ~/Dropbox/scripts/private_dotfiles/grubhub ~/.dotfiles/private/work
 
 git config --global url.ssh://git@github.com/.insteadOf https://github.com/
 git config --global color.branch auto
