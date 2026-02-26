@@ -15,17 +15,13 @@ zstyle ':omz:update' mode auto
 
 plugins=(
   alias-finder
-  aws
   brew
   colored-man-pages
-  colorize
   command-not-found
   docker-compose
   docker
   git
-  gitignore
   history-substring-search
-  httpie
   tmux
   zsh-autosuggestions
 )
