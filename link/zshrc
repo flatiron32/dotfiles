@@ -223,7 +223,10 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 if [ -d ~/.dotfiles/private ]; then
     for _dotfiles_folder in ~/.dotfiles/private/*/; do
         for _dotfiles_file in "$_dotfiles_folder"*(N); do
-            [ -f "$_dotfiles_file" ] && source "$_dotfiles_file"
+            [ -f "$_dotfiles_file" ] || continue
+            case "${_dotfiles_file:t}" in
+                *.sh|*.zsh|config) source "$_dotfiles_file" ;;
+            esac
         done
     done
     unset _dotfiles_folder _dotfiles_file
