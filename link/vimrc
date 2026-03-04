@@ -1,5 +1,6 @@
 set nocompatible
 set autoread
+set hidden
 
 "turn on line numbers
 set number
