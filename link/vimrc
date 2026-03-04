@@ -96,9 +96,10 @@ function! s:GitBlame()
     let cmd = "git blame -w " . bufname("%")
     let nline = line(".") + 1
     botright new
+    setlocal buftype=nofile noswapfile filetype=perl
     execute "$read !" . cmd
     execute "normal " . nline . "gg"
-    execute "set filetype=perl"
+    setlocal nomodifiable
 endfunction
 
 " move vertically by visual line with j and k, preserve count motions
