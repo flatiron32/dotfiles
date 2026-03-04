@@ -98,6 +98,6 @@ function! s:GitBlame()
     execute "set filetype=perl"
 endfunction
 
-" move vertically by visual line with j and k
-nnoremap j gj
-nnoremap k gk
+" move vertically by visual line with j and k, preserve count motions
+noremap <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <expr> k (v:count == 0 ? 'gk' : 'k')
