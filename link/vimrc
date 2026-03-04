@@ -10,6 +10,7 @@ let mapleader = " "
 
 "turn on line numbers
 set number
+set relativenumber
 
 "enable mouse
 set mouse=a
