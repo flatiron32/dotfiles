@@ -1,5 +1,6 @@
 set nocompatible
 set autoread
+autocmd FocusGained,BufEnter * checktime
 set hidden
 set clipboard=unnamed
 set scrolloff=5
