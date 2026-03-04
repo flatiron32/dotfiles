@@ -78,7 +78,7 @@ let g:ale_fixers = {
 " Set this veriable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
 
-set ls=2
+set laststatus=2
 
 autocmd FileType markdown setlocal spell
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab
