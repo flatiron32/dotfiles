@@ -2,6 +2,7 @@ set nocompatible
 set autoread
 set hidden
 set clipboard=unnamed
+set scrolloff=5
 
 let mapleader = " "
 
