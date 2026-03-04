@@ -3,6 +3,8 @@ set autoread
 set hidden
 set clipboard=unnamed
 
+let mapleader = " "
+
 "turn on line numbers
 set number
 
