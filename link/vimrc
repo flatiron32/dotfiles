@@ -1,4 +1,5 @@
 set nocompatible
+set autoread
 
 "turn on line numbers
 set number
