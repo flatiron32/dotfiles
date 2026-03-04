@@ -3,6 +3,8 @@ set autoread
 set hidden
 set clipboard=unnamed
 set scrolloff=5
+set wildmenu
+set wildmode=longest:full,full
 
 let mapleader = " "
 
