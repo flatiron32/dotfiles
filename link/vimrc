@@ -1,6 +1,7 @@
 set nocompatible
 set autoread
 set hidden
+set clipboard=unnamed
 
 "turn on line numbers
 set number
